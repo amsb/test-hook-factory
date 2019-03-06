@@ -6,10 +6,15 @@ import pkg from "./package.json"
 export default [
   {
     input: "src/main.js",
+    external: [
+      ...Object.keys(pkg.peerDependencies),
+      ...Object.keys(pkg.devDependencies)
+    ],
     output: {
       name: "MyLib",
       file: pkg.browser,
       exports: "named",
+      globals: ["React"],
       format: "umd"
     },
     plugins: [
@@ -23,8 +28,9 @@ export default [
   {
     input: "src/main.js",
     external: [
-	  // ...Object.keys(pkg.dependencies),
-	  ...Object.keys(pkg.peerDependencies)
+      ...Object.keys(pkg.dependencies),
+      ...Object.keys(pkg.peerDependencies),
+      ...Object.keys(pkg.devDependencies)
     ],
     output: [
       { file: pkg.main, exports: "named", format: "cjs" },

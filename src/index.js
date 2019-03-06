@@ -17,7 +17,7 @@ import { createStateHook } from "mylib"
 const useMyState = createStateHook("World")
 
 function App() {
-  const myState = useMyState()
+  const [myState] = useMyState()
   return (
     <div className="App">
       <h1>Hello {myState}</h1>
